@@ -1,10 +1,12 @@
 #!/usr/bin/python
 #-*- coding:UTF-8 -*-
 
+# python 2.7
+
 import requests
 from bs4 import BeautifulSoup
 
-NewCnt = 5
+NewCnt = 10
 
 def get_url(date, category_list):
     url = 'http://www.chinanews.com/scroll-news/' + date +'/news.shtml'
@@ -37,7 +39,7 @@ def get_url(date, category_list):
 if __name__ == '__main__':
     date = "2021/0204"
     print date
-    get_url(date, [u'国内', u'娱乐'])
+    get_url(date, [u'国内'])
 
 
 
