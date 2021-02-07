@@ -20,7 +20,10 @@ if __name__ == '__main__':
     # 获取源代码
     html = r.text
     soup = BeautifulSoup(html, 'html.parser')
+
+
     title = soup.find_all('a', class_='list-title')
+    #print("title=", title)
     point = soup.find_all('span', class_='icon-rise')
     print('{:^55}'.format('百度热搜榜'))
     print('{:^5}\t{:^40}\t{:^10}'.format('排名', '标题', '热度'))
