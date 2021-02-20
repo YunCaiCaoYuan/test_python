@@ -2,6 +2,7 @@ from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
 
 if __name__ == "__main__":
+    """
     chatbot = ChatBot('Ron Obvious')
 
     # Create a new trainer for the chatbot
@@ -13,3 +14,13 @@ if __name__ == "__main__":
     # Get a response to an input statement
     res = chatbot.get_response("what are you doing")
     print(res)
+    """
+
+    bot = ChatBot('Ron Obvious')
+    while True:
+        try:
+            bot_input = bot.get_response(input())
+            print(bot_input)
+
+        except(KeyboardInterrupt, EOFError, SystemExit):
+            break

@@ -2,3 +2,6 @@ misc.xml
 modules.xml
 vcs.xml
 venv
+*.pickle
+*.sqlite3
+/.idea
