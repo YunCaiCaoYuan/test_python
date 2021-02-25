@@ -179,7 +179,6 @@ if __name__ == "__main__":
     print(res)
     """
 
-    """
     bot = ChatBot('Ron Obvious')
     # bot = ChatBot('Ron Obvious', read_only=True)
     while True:
@@ -189,4 +188,4 @@ if __name__ == "__main__":
 
         except(KeyboardInterrupt, EOFError, SystemExit):
             break
-    """
+
