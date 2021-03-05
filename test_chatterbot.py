@@ -5,7 +5,9 @@ import logging
 
 
 if __name__ == "__main__":
-    '''
+    logging.basicConfig(level=logging.INFO)
+
+    ''' 
     #This is an example showing how to create an export file from an existing chat bot that can then be used to train other bots.
     
 
@@ -52,10 +54,11 @@ if __name__ == "__main__":
     """
 
     """
+    # ??? 执行不符合预期
     #Specific response example
     # Create a new instance of a ChatBot
     bot = ChatBot(
-        'Exact Response Example Bot',
+        'Exact Response Example Bot1',
         storage_adapter='chatterbot.storage.SQLStorageAdapter',
         logic_adapters=[
             {
@@ -80,18 +83,16 @@ if __name__ == "__main__":
     bot = ChatBot(
         'SQLMemoryTerminal',
         storage_adapter='chatterbot.storage.SQLStorageAdapter',
-        database_uri=None,
+        database_uri='sqlite:///time_and_math.sqlite3',
         logic_adapters=[
             'chatterbot.logic.MathematicalEvaluation',
             'chatterbot.logic.TimeLogicAdapter',
             'chatterbot.logic.BestMatch'
         ]
     )
-
     # Get a few responses from the bot
     response = bot.get_response('What time is it?')
     print(response)
-
     response = bot.get_response('What is 7 plus 7?')
     print(response)
     """
@@ -179,6 +180,7 @@ if __name__ == "__main__":
     print(res)
     """
 
+    """
     bot = ChatBot('Ron Obvious')
     # bot = ChatBot('Ron Obvious', read_only=True)
     while True:
@@ -188,4 +190,35 @@ if __name__ == "__main__":
 
         except(KeyboardInterrupt, EOFError, SystemExit):
             break
+    """
 
+    '''
+    # A:你喝酒吗
+    # B:我的大脑不需要任何饮料。
+    chatbot = ChatBot(
+        'xiaojuzi',
+        storage_adapter='chatterbot.storage.SQLStorageAdapter',
+        database_uri='sqlite:///xiaojuzi.sqlite3'
+    )
+    trainer = ChatterBotCorpusTrainer(chatbot)
+    trainer.train("chatterbot.corpus.chinese") # Training xxx.yml ...
+    res = chatbot.get_response("你喝酒吗")
+    print(res)
+    '''
+
+    chatbot = ChatBot(
+        'my_conv',
+        storage_adapter='chatterbot.storage.SQLStorageAdapter',
+        database_uri='sqlite:///my_conv.sqlite3'
+    )
+    trainer = ListTrainer(chatbot)
+    trainer.train([
+        '吃了么',
+        '吃过了',
+        '你吃了么',
+        '我也刚吃',
+        '要不要来根烟',
+        '谢了',
+    ])
+    res = chatbot.get_response("要不要来根烟")
+    print(res)
