@@ -7,10 +7,8 @@ import logging
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
 
-    ''' 
+    '''
     #This is an example showing how to create an export file from an existing chat bot that can then be used to train other bots.
-    
-
     chatbot = ChatBot('Export Example Bot')
 
     # First, lets train our bot with some data
@@ -116,7 +114,7 @@ if __name__ == "__main__":
     """
 
     """
-    # Uncomment the following lines to enable verbose logging
+    # Uncomment the following lines to enable verbose logging 
     # import logging
     # logging.basicConfig(level=logging.INFO)
 
@@ -166,19 +164,29 @@ if __name__ == "__main__":
     print(response)
     """
 
-    """
-    chatbot = ChatBot('Ron Obvious')
+
+    chatbot = ChatBot(
+        'Ron Obvious 123',
+        storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
+        logic_adapters=[
+            'chatterbot.logic.BestMatch'
+        ],
+        database_uri='mongodb://localhost:27017/train_path'
+    )
 
     # Create a new trainer for the chatbot
     trainer = ChatterBotCorpusTrainer(chatbot)
 
     # Train the chatbot based on the english corpus
-    trainer.train("chatterbot.corpus.english")
+    # trainer.train("chatterbot.corpus.english")
+    trainer.train("./chatterbot_corpus/data/english") # 指定路径
 
     # Get a response to an input statement
-    res = chatbot.get_response("what are you doing")
+    res = chatbot.get_response("What is AI?")
     print(res)
-    """
+
+    res = chatbot.get_response("Are you sentient?")
+    print(res)
 
     """
     bot = ChatBot('Ron Obvious')
@@ -206,6 +214,7 @@ if __name__ == "__main__":
     print(res)
     '''
 
+    """
     chatbot = ChatBot(
         'my_conv',
         storage_adapter='chatterbot.storage.SQLStorageAdapter',
@@ -222,3 +231,28 @@ if __name__ == "__main__":
     ])
     res = chatbot.get_response("要不要来根烟")
     print(res)
+    """
+
+
+    '''
+    # 使用mongdb
+    # Create a new ChatBot instance
+    bot = ChatBot(
+        'Terminal',
+        storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
+        logic_adapters=[
+            'chatterbot.logic.BestMatch'
+        ],
+        database_uri='mongodb://localhost:27017/chatterbot-database'
+    )
+    print('Type something to begin...')
+
+    while True:
+        try:
+            user_input = input()
+            bot_response = bot.get_response(user_input)
+            print(bot_response)
+        # Press ctrl-c or ctrl-d on the keyboard to exit
+        except (KeyboardInterrupt, EOFError, SystemExit):
+            break
+    '''
