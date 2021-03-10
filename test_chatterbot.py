@@ -164,7 +164,7 @@ if __name__ == "__main__":
     print(response)
     """
 
-
+    """
     chatbot = ChatBot(
         'Ron Obvious 123',
         storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
@@ -187,6 +187,7 @@ if __name__ == "__main__":
 
     res = chatbot.get_response("Are you sentient?")
     print(res)
+    """
 
     """
     bot = ChatBot('Ron Obvious')
@@ -200,19 +201,19 @@ if __name__ == "__main__":
             break
     """
 
-    '''
     # A:你喝酒吗
     # B:我的大脑不需要任何饮料。
     chatbot = ChatBot(
         'xiaojuzi',
-        storage_adapter='chatterbot.storage.SQLStorageAdapter',
-        database_uri='sqlite:///xiaojuzi.sqlite3'
+        # storage_adapter='chatterbot.storage.SQLStorageAdapter',
+        # database_uri='sqlite:///xiaojuzi.sqlite3'
+        storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
+        database_uri='mongodb://localhost:27017/xiaojuzi'
     )
     trainer = ChatterBotCorpusTrainer(chatbot)
     trainer.train("chatterbot.corpus.chinese") # Training xxx.yml ...
-    res = chatbot.get_response("你喝酒吗")
+    res = chatbot.get_response("什么是ai")
     print(res)
-    '''
 
     """
     chatbot = ChatBot(
