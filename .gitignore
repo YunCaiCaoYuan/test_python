@@ -2,6 +2,7 @@ misc.xml
 modules.xml
 vcs.xml
 venv
+venv2
 *.pickle
 *.sqlite3
 *.sqlite3-shm
