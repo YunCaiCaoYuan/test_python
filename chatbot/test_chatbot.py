@@ -3,7 +3,14 @@
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
 
-def get_response():
+
+def get_response(chatbot):
+    res = chatbot.get_response("什么是ai")
+    # print(res)
+    return res
+
+
+def init_chatbot():
     chatbot = ChatBot(
         'xiaojuzi',
         storage_adapter='chatterbot.storage.SQLStorageAdapter',
@@ -12,7 +19,6 @@ def get_response():
         # database_uri='mongodb://localhost:27017/xiaojuzi'
     )
     trainer = ChatterBotCorpusTrainer(chatbot)
-    trainer.train("chatterbot.corpus.chinese") # Training xxx.yml ...
-    res = chatbot.get_response("什么是ai")
-    print(res)
-    return res
+    #trainer.train("chatterbot.corpus.chinese")  # Training xxx.yml ...
+    print("init chatbot finished...")
+    return chatbot
